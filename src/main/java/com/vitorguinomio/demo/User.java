@@ -2,47 +2,51 @@ package com.vitorguinomio.demo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field; // <--- Importante!
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Document
+// 1. O 'collection = "User"' diz para procurar a tabela com U maiúsculo
+@Document(collection = "User")
 public class User implements Serializable {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
+
     @Id
-    private String id;
+    private int id;
+
+    @Field("nome")
     private String name;
+
     private String email;
 
-    public User(){
-
+    public User() {
     }
 
-    public User(String id, String name, String email) {
+    public User(int id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
     }
 
-
-    public String getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
@@ -61,4 +65,3 @@ public class User implements Serializable {
         return Objects.hashCode(id);
     }
 }
-
