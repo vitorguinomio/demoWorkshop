@@ -11,7 +11,10 @@ public class UserService {
     @Autowired
     private UserRepository repo;
     public List<User> findAll(){
-        return repo.findAll();
+        List<User> users = repo.findAll();
+        System.out.println("TOTAL USERS: " + users.size());
+        return users;
     }
+
 
 }
